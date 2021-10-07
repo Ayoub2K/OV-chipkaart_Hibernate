@@ -13,7 +13,7 @@ public class Adres {
     public String straat;
     public String woonplaats;
 
-    @OneToOne(mappedBy = "adres")
+    @OneToOne
     @JoinColumn(name = "reiziger_id", foreignKey = @ForeignKey(name = "adres_id"))
     public Reiziger reiziger;
 

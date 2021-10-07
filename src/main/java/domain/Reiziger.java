@@ -15,7 +15,8 @@ public class Reiziger {
     public String achternaam;
     public Date geboortedatum;
 
-    @OneToOne(mappedBy = "reiziger")
+    @OneToOne
+    @JoinColumn(name = "reiziger_id")
     public Adres adres;
 
     public Reiziger(){
@@ -47,7 +48,6 @@ public class Reiziger {
                 ", tussenvoegsel='" + tussenvoegsel + '\'' +
                 ", achternaam='" + achternaam + '\'' +
                 ", geboortedatum=" + geboortedatum +
-                ", adres=" + adres +
                 '}';
     }
 }

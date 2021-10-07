@@ -1,10 +1,8 @@
 package domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -16,8 +14,8 @@ public class Product {
     public String beschrijving;
     public double prijs;
 
-    @Transient
-    public ArrayList<OvChipkaart> OvChipkaarten;
+    @ManyToMany(mappedBy = "producten")
+    public List<OvChipkaart> OvChipkaarten;
     @Transient
     public ArrayList<Integer> kaart_nummers;
 
@@ -42,7 +40,7 @@ public class Product {
         kaart_nummers.add(kaart_nummer);
     }
 
-    public ArrayList<OvChipkaart> getOvChipkaarten() {
+    public List<OvChipkaart> getOvChipkaarten() {
         return OvChipkaarten;
     }
 

@@ -1,27 +1,32 @@
 package domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "ov_chipkaart")
 public class OvChipkaart {
     @Id
     @Column(name = "kaart_nummer")
     public int id;
 
-    public int reiziger_id;
     public Date geldig_tot;
     public int klasse;
     public int saldo;
-    @Transient
+
+    @OneToOne
+    @JoinColumn(name = "reiziger_id", foreignKey = @ForeignKey(name = "kaart_nummer"))
     public Reiziger reiziger;
-    @Transient
-    public ArrayList<Product> producten;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ov_chipkaart_product",
+            joinColumns = @JoinColumn(name = "product_nummer"),
+            inverseJoinColumns = @JoinColumn(name = "kaart_nummer"))
+    public List<Product> producten;
 
     public OvChipkaart(){}
 
@@ -34,20 +39,8 @@ public class OvChipkaart {
         this.producten = new ArrayList<>();
     }
 
-    public OvChipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int reiziger_id) {
-        this.id = kaart_nummer;
-        this.geldig_tot = geldig_tot;
-        this.klasse = klasse;
-        this.saldo = saldo;
-        this.reiziger_id = reiziger_id;
-    }
-
-    public ArrayList<Product> getProducten() {
+    public List<Product> getProducten() {
         return producten;
-    }
-
-    public void addProduct(Product product) {
-        producten.add(product);
     }
 
     public void removeProduct(Product product) {
