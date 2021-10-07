@@ -15,8 +15,7 @@ public class Reiziger {
     public String achternaam;
     public Date geboortedatum;
 
-    @OneToOne
-    @JoinColumn(name = "adres_id", foreignKey = @ForeignKey(name = "reiziger_id"))
+    @OneToOne(mappedBy = "reiziger")
     public Adres adres;
 
     public Reiziger(){
