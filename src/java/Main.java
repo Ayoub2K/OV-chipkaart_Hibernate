@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import ovchipkaart.OvChipkaarDAOHibernate;
+import ovchipkaart.OvChipkaart;
+import product.Product;
 import product.ProductDAOHibernate;
 import reiziger.Reiziger;
 import reiziger.ReizigerDAOHibernate;
@@ -83,18 +85,27 @@ public class Main {
             String gbdatum = "2000-05-17";
             Reiziger Ayoub = new Reiziger(99,"A", "", "Aarkoub", java.sql.Date.valueOf(gbdatum));
             Adres adresAyoub = new Adres(989,"4545AS", "12", "KWWEG", "Gouda", Ayoub);
+            String okdatum = "2000-05-17";
+            OvChipkaart ovChipkaart = new OvChipkaart(165, java.sql.Date.valueOf(okdatum), 1, 30, Ayoub);
+            Product testProduct = new Product(6455, "naam van product", "beschrijving", 22 );
 
 
             // saves
             rdao.save(Ayoub);
             adao.save(adresAyoub);
+            ovdao.save(ovChipkaart);
+            pdao.save(testProduct);
 
             System.out.println(rdao.findAll());
             System.out.println(adao.findByReiziger(Ayoub));
+            System.out.println(ovdao.findByReiziger(Ayoub));
+            System.out.println(pdao.findAll());
 
 
             //delete everything
 
+            pdao.delete(testProduct);
+            ovdao.delete(ovChipkaart);
             adao.delete(adresAyoub);
             rdao.delete(Ayoub);
 
