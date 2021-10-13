@@ -1,7 +1,8 @@
-package domain;
+package reiziger;
+
+import adres.Adres;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -23,16 +24,15 @@ public class Reiziger {
 
     }
 
-    public Reiziger(String voorletters, String tussenvoegsel, String achternaam, java.sql.Date geboortedatum, Adres adres) {
+    public Reiziger(String voorletters, String tussenvoegsel, String achternaam, java.sql.Date geboortedatum) {
         this.voorletters = voorletters;
         this.tussenvoegsel = tussenvoegsel;
         this.achternaam = achternaam;
         this.geboortedatum = geboortedatum;
-        this.adres = adres;
     }
 
-    public Reiziger(int reiziger_id, String voorletters, String tussenvoegsel, String achternaam, java.sql.Date geboortedatum, Adres adres) {
-        this(voorletters, tussenvoegsel, achternaam, geboortedatum, adres);
+    public Reiziger(int reiziger_id, String voorletters, String tussenvoegsel, String achternaam, java.sql.Date geboortedatum) {
+        this(voorletters, tussenvoegsel, achternaam, geboortedatum);
         this.id = reiziger_id;
     }
 

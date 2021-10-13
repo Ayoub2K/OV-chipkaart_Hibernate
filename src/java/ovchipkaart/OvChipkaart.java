@@ -1,5 +1,8 @@
-package domain;
+package ovchipkaart;
 
+
+import product.Product;
+import reiziger.Reiziger;
 
 import javax.persistence.*;
 import java.util.ArrayList;

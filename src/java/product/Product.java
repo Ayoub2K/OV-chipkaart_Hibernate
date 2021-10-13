@@ -1,4 +1,6 @@
-package domain;
+package product;
+
+import ovchipkaart.OvChipkaart;
 
 import javax.persistence.*;
 import java.util.ArrayList;

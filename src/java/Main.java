@@ -1,8 +1,14 @@
+import adres.Adres;
+import adres.AdresDAOHibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import ovchipkaart.OvChipkaarDAOHibernate;
+import product.ProductDAOHibernate;
+import reiziger.Reiziger;
+import reiziger.ReizigerDAOHibernate;
 
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
@@ -39,7 +45,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws SQLException {
-        testFetchAll();
+        //testFetchAll();
+        testDAOHibernate();
     }
 
     /**
@@ -58,6 +65,39 @@ public class Main {
                 }
                 System.out.println();
             }
+        } finally {
+            session.close();
+        }
+    }
+
+    private static void testDAOHibernate() {
+        Session session = getSession();
+        try {
+            System.out.println("testDAOHibernate()");
+            AdresDAOHibernate adao = new AdresDAOHibernate(getSession());
+            OvChipkaarDAOHibernate ovdao = new OvChipkaarDAOHibernate(getSession());
+            ProductDAOHibernate pdao = new ProductDAOHibernate(getSession());
+            ReizigerDAOHibernate rdao = new ReizigerDAOHibernate(getSession());
+
+            //create objecten
+            String gbdatum = "2000-05-17";
+            Reiziger Ayoub = new Reiziger(99,"A", "", "Aarkoub", java.sql.Date.valueOf(gbdatum));
+            Adres adresAyoub = new Adres(989,"4545AS", "12", "KWWEG", "Gouda", Ayoub);
+
+
+            // saves
+            rdao.save(Ayoub);
+            adao.save(adresAyoub);
+
+            System.out.println(rdao.findAll());
+            System.out.println(adao.findByReiziger(Ayoub));
+
+
+            //delete everything
+
+            adao.delete(adresAyoub);
+            rdao.delete(Ayoub);
+
         } finally {
             session.close();
         }
