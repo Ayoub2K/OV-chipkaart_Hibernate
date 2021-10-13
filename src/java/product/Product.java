@@ -63,4 +63,48 @@ public class Product {
                 ", prijs=" + prijs +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public String getBeschrijving() {
+        return beschrijving;
+    }
+
+    public void setBeschrijving(String beschrijving) {
+        this.beschrijving = beschrijving;
+    }
+
+    public double getPrijs() {
+        return prijs;
+    }
+
+    public void setPrijs(double prijs) {
+        this.prijs = prijs;
+    }
+
+    public void setOvChipkaarten(List<OvChipkaart> ovChipkaarten) {
+        OvChipkaarten = ovChipkaarten;
+    }
+
+    public ArrayList<Integer> getKaart_nummers() {
+        return kaart_nummers;
+    }
+
+    public void setKaart_nummers(ArrayList<Integer> kaart_nummers) {
+        this.kaart_nummers = kaart_nummers;
+    }
 }

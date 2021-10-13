@@ -87,7 +87,7 @@ public class Main {
             Adres adresAyoub = new Adres(989,"4545AS", "12", "KWWEG", "Gouda", Ayoub);
             String okdatum = "2000-05-17";
             OvChipkaart ovChipkaart = new OvChipkaart(165, java.sql.Date.valueOf(okdatum), 1, 30, Ayoub);
-            Product testProduct = new Product(6455, "naam van product", "beschrijving", 22 );
+            Product testProduct = new Product(65, "naam van product", "beschrijving", 22 );
 
 
             // saves

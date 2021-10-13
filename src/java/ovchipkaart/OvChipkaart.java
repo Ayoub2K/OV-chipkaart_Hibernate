@@ -64,4 +64,48 @@ public class OvChipkaart {
                 ", reiziger=" + reiziger +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getGeldig_tot() {
+        return geldig_tot;
+    }
+
+    public void setGeldig_tot(Date geldig_tot) {
+        this.geldig_tot = geldig_tot;
+    }
+
+    public int getKlasse() {
+        return klasse;
+    }
+
+    public void setKlasse(int klasse) {
+        this.klasse = klasse;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
+    public Reiziger getReiziger() {
+        return reiziger;
+    }
+
+    public void setReiziger(Reiziger reiziger) {
+        this.reiziger = reiziger;
+    }
+
+    public void setProducten(List<Product> producten) {
+        this.producten = producten;
+    }
 }
