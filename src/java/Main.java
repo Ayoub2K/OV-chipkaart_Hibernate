@@ -47,7 +47,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws SQLException {
-        //testFetchAll();
+        testFetchAll();
         testDAOHibernate();
     }
 
@@ -90,20 +90,33 @@ public class Main {
             Product testProduct = new Product(65, "naam van product", "beschrijving", 22 );
 
 
-            // saves
+            //CREAT
             rdao.save(Ayoub);
             adao.save(adresAyoub);
             ovdao.save(ovChipkaart);
             pdao.save(testProduct);
 
+
+            //UPDATE
+            Ayoub.setTussenvoegsel("van der");
+            rdao.update(Ayoub);
+
+            ovChipkaart.setKlasse(2);
+            ovdao.update(ovChipkaart);
+
+            testProduct.setPrijs(50);
+            pdao.update(testProduct);
+
+
+            //READ
             System.out.println(rdao.findAll());
+            System.out.println(adao.findAll());
             System.out.println(adao.findByReiziger(Ayoub));
             System.out.println(ovdao.findByReiziger(Ayoub));
             System.out.println(pdao.findAll());
 
 
-            //delete everything
-
+            //DElETE
             pdao.delete(testProduct);
             ovdao.delete(ovChipkaart);
             adao.delete(adresAyoub);

@@ -56,7 +56,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
     public List<Reiziger> findByGbdatum(String datum) {
         try {
             Transaction transaction = this.session.beginTransaction();
-            List<Reiziger> reizigers = session.createQuery("FROM Reiziger WHERE geboortedatum = " + datum).list();
+            List<Reiziger> reizigers = session.createQuery("FROM Reiziger WHERE geboortedatum = " + java.sql.Date.valueOf(datum)).list();
             transaction.commit();
             return reizigers;
         }catch (Exception e){
