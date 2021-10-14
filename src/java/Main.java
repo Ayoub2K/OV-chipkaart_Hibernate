@@ -142,9 +142,7 @@ public class Main {
             System.out.println(ovdao.findByProduct(testProduct));
 
             System.out.println(pdao.findByOVChipkaart(ovChipkaart));
-//            for (Product p : pdao.findByOVChipkaart(ovChipkaart)){
-//                System.out.println(p);
-//            }
+
 
 
             //DElETE
