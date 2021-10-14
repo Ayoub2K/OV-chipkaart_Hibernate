@@ -135,7 +135,7 @@ public class Main {
                 System.out.println(p);
             }
 
-            System.out.println(pdao.findByOVChipkaart(ovChipkaart));
+            //System.out.println(pdao.findByOVChipkaart(ovChipkaart));
 
 
             //DElETE
