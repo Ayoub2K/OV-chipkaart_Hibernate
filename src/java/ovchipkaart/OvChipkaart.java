@@ -1,6 +1,7 @@
 package ovchipkaart;
 
 
+import org.hibernate.annotations.Cascade;
 import product.Product;
 import reiziger.Reiziger;
 
@@ -24,11 +25,10 @@ public class OvChipkaart {
     @JoinColumn(name = "reiziger_id", foreignKey = @ForeignKey(name = "kaart_nummer"))
     public Reiziger reiziger;
 
-    @ManyToMany
-    @JoinTable(
-            name = "ov_chipkaart_product",
-            joinColumns = @JoinColumn(name = "product_nummer"),
-            inverseJoinColumns = @JoinColumn(name = "kaart_nummer"))
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "ov_chipkaart_product",
+                joinColumns = @JoinColumn(name = "kaart_nummer"),
+                inverseJoinColumns = @JoinColumn(name = "product_nummer"))
     public List<Product> producten;
 
     public OvChipkaart(){}
@@ -56,12 +56,13 @@ public class OvChipkaart {
 
     @Override
     public String toString() {
-        return "OVChipkaart{" +
-                "kaart_nummer=" + id +
+        return "OvChipkaart{" +
+                "id=" + id +
                 ", geldig_tot=" + geldig_tot +
                 ", klasse=" + klasse +
                 ", saldo=" + saldo +
                 ", reiziger=" + reiziger +
+                ", producten=" + producten +
                 '}';
     }
 
@@ -107,5 +108,9 @@ public class OvChipkaart {
 
     public void setProducten(List<Product> producten) {
         this.producten = producten;
+    }
+
+    public void addProduct(Product p){
+        producten.add(p);
     }
 }

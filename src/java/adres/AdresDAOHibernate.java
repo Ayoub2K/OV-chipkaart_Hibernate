@@ -26,7 +26,7 @@ public class AdresDAOHibernate implements AdresDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -39,7 +39,7 @@ public class AdresDAOHibernate implements AdresDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -52,7 +52,7 @@ public class AdresDAOHibernate implements AdresDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -65,7 +65,7 @@ public class AdresDAOHibernate implements AdresDAO{
             transaction.commit();
             return adres;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -78,7 +78,7 @@ public class AdresDAOHibernate implements AdresDAO{
             transaction.commit();
             return adressen;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

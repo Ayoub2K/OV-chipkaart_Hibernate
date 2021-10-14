@@ -21,7 +21,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -34,7 +34,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -47,7 +47,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -60,7 +60,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
             transaction.commit();
             return reizigers;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -73,7 +73,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO{
             transaction.commit();
             return reizigers;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

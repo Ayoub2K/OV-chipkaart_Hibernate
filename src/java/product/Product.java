@@ -1,5 +1,6 @@
 package product;
 
+import org.hibernate.annotations.Cascade;
 import ovchipkaart.OvChipkaart;
 
 import javax.persistence.*;
@@ -18,15 +19,13 @@ public class Product {
 
     @ManyToMany(mappedBy = "producten")
     public List<OvChipkaart> OvChipkaarten;
-    @Transient
-    public ArrayList<Integer> kaart_nummers;
+
 
     public Product(String naam, String beschrijving, double prijs) {
         this.naam = naam;
         this.beschrijving = beschrijving;
         this.prijs = prijs;
         this.OvChipkaarten = new ArrayList<>();
-        this.kaart_nummers = new ArrayList<>();
     }
 
     public Product(int product_nummer, String naam, String beschrijving, double prijs) {
@@ -38,9 +37,7 @@ public class Product {
 
     }
 
-    public void addOvChipkaarten(int kaart_nummer) {
-        kaart_nummers.add(kaart_nummer);
-    }
+
 
     public List<OvChipkaart> getOvChipkaarten() {
         return OvChipkaarten;
@@ -53,6 +50,11 @@ public class Product {
     public void removeOvChipkaarten(OvChipkaart ovChipkaart) {
         OvChipkaarten.remove(ovChipkaart);
     }
+
+    public void addOvChipkaarten(OvChipkaart ovChipkaart) {
+        OvChipkaarten.add(ovChipkaart);
+    }
+
 
     @Override
     public String toString() {
@@ -100,11 +102,4 @@ public class Product {
         OvChipkaarten = ovChipkaarten;
     }
 
-    public ArrayList<Integer> getKaart_nummers() {
-        return kaart_nummers;
-    }
-
-    public void setKaart_nummers(ArrayList<Integer> kaart_nummers) {
-        this.kaart_nummers = kaart_nummers;
-    }
 }

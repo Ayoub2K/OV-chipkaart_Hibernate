@@ -8,6 +8,7 @@ import ovchipkaart.OvChipkaartDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAOHibernate implements ProductDAO{
@@ -26,7 +27,7 @@ public class ProductDAOHibernate implements ProductDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -39,7 +40,7 @@ public class ProductDAOHibernate implements ProductDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -52,7 +53,7 @@ public class ProductDAOHibernate implements ProductDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -61,11 +62,19 @@ public class ProductDAOHibernate implements ProductDAO{
     public List<Product> findByOVChipkaart(OvChipkaart ovChipkaart) {
         try {
             Transaction transaction = this.session.beginTransaction();
-            List<Product> producten = session.createQuery("FROM Product where OvChipkaarten = " + ovChipkaart).list();
+            List<Product> producten = session.createQuery(
+                    "FROM Product WHERE OvChipkaarten = " + ovChipkaart.getId() + "in (SELECT id from p. )").list();
+            List<Product> ovChipkaartProducten = new ArrayList<>();
+            for (Product product : producten) {
+                if (product.getOvChipkaarten().contains(ovChipkaart)) {
+                    ovChipkaartProducten.add(product);
+                }
+            }
+
             transaction.commit();
-            return producten;
+            return ovChipkaartProducten;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

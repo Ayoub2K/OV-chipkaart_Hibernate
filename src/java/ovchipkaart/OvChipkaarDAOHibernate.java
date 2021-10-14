@@ -28,7 +28,7 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -41,7 +41,8 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+
+            e.printStackTrace();
             return false;
         }
     }
@@ -54,7 +55,8 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+
+            e.printStackTrace();
             return false;
         }
     }
@@ -67,7 +69,8 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return ovChipkaart;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+
+            e.printStackTrace();
             return null;
         }
     }
@@ -80,7 +83,8 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return ovChipkaartList;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+
+            e.printStackTrace();
             return null;
         }
     }
@@ -93,7 +97,8 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return ovChipkaartList;
         }catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+
+            e.printStackTrace();
             return null;
         }
     }

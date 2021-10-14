@@ -1,4 +1,5 @@
 import adres.Adres;
+import adres.AdresDAO;
 import adres.AdresDAOHibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -7,14 +8,18 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import ovchipkaart.OvChipkaarDAOHibernate;
 import ovchipkaart.OvChipkaart;
+import ovchipkaart.OvChipkaartDAO;
 import product.Product;
+import product.ProductDAO;
 import product.ProductDAOHibernate;
 import reiziger.Reiziger;
+import reiziger.ReizigerDAO;
 import reiziger.ReizigerDAOHibernate;
 
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Testklasse - deze klasse test alle andere klassen in deze package.
@@ -47,8 +52,10 @@ public class Main {
     }
 
     public static void main(String[] args) throws SQLException {
-        testFetchAll();
+        Session session = Main.getSession();
+        //testFetchAll();
         testDAOHibernate();
+
     }
 
     /**
@@ -76,10 +83,10 @@ public class Main {
         Session session = getSession();
         try {
             System.out.println("testDAOHibernate()");
-            AdresDAOHibernate adao = new AdresDAOHibernate(getSession());
-            OvChipkaarDAOHibernate ovdao = new OvChipkaarDAOHibernate(getSession());
-            ProductDAOHibernate pdao = new ProductDAOHibernate(getSession());
-            ReizigerDAOHibernate rdao = new ReizigerDAOHibernate(getSession());
+            AdresDAOHibernate adao = new AdresDAOHibernate(session);
+            OvChipkaarDAOHibernate ovdao = new OvChipkaarDAOHibernate(session);
+            ProductDAOHibernate pdao = new ProductDAOHibernate(session);
+            ReizigerDAOHibernate rdao = new ReizigerDAOHibernate(session);
 
             //create objecten
             String gbdatum = "2000-05-17";
@@ -87,10 +94,10 @@ public class Main {
             Adres adresAyoub = new Adres(989,"4545AS", "12", "KWWEG", "Gouda", Ayoub);
             String okdatum = "2000-05-17";
             OvChipkaart ovChipkaart = new OvChipkaart(165, java.sql.Date.valueOf(okdatum), 1, 30, Ayoub);
-            Product testProduct = new Product(65, "naam van product", "beschrijving", 22 );
+            Product testProduct = new Product(16885, "naam van product", "beschrijving", 22 );
 
 
-            //CREAT
+            //CREATE
             rdao.save(Ayoub);
             adao.save(adresAyoub);
             ovdao.save(ovChipkaart);
@@ -102,23 +109,39 @@ public class Main {
             rdao.update(Ayoub);
 
             ovChipkaart.setKlasse(2);
+
+            ovChipkaart.addProduct(testProduct);
             ovdao.update(ovChipkaart);
 
             testProduct.setPrijs(50);
+            testProduct.addOvChipkaarten(ovChipkaart);
             pdao.update(testProduct);
+
+            adresAyoub.setHuisnummer("55a");
+            adao.update(adresAyoub);
 
 
             //READ
-            System.out.println(rdao.findAll());
-            System.out.println(adao.findAll());
+            for (Reiziger r : rdao.findAll()){
+                System.out.println(r);
+            }
+            for (Adres a : adao.findAll()){
+                System.out.println(a);
+            }
+
             System.out.println(adao.findByReiziger(Ayoub));
             System.out.println(ovdao.findByReiziger(Ayoub));
-            System.out.println(pdao.findAll());
+            for (Product p : pdao.findAll()){
+                System.out.println(p);
+            }
+
+            System.out.println(pdao.findByOVChipkaart(ovChipkaart));
 
 
             //DElETE
-            pdao.delete(testProduct);
+
             ovdao.delete(ovChipkaart);
+            pdao.delete(testProduct);
             adao.delete(adresAyoub);
             rdao.delete(Ayoub);
 
