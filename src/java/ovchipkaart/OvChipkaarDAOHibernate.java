@@ -55,7 +55,6 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
             transaction.commit();
             return true;
         }catch (Exception e){
-
             e.printStackTrace();
             return false;
         }
@@ -79,9 +78,9 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
     public List<OvChipkaart> findByProduct(Product product) {
         try {
             Transaction transaction = this.session.beginTransaction();
-            List<OvChipkaart> ovChipkaartList = session.createQuery("FROM OvChipkaart WHERE OvChipkaart.producten = " + product).list();
+            Product p = session.createQuery("from producten where kaart_nummer = " + product.getProduct_nummer(),  Product.class).getSingleResult();
             transaction.commit();
-            return ovChipkaartList;
+            return p.getOvChipkaarten();
         }catch (Exception e){
 
             e.printStackTrace();

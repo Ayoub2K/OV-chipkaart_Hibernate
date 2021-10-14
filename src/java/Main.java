@@ -95,7 +95,11 @@ public class Main {
             String okdatum = "2000-05-17";
             OvChipkaart ovChipkaart = new OvChipkaart(165, java.sql.Date.valueOf(okdatum), 1, 30, Ayoub);
             Product testProduct = new Product(16885, "naam van product", "beschrijving", 22 );
-
+            //delete
+            ovdao.delete(ovChipkaart);
+            pdao.delete(testProduct);
+            adao.delete(adresAyoub);
+            rdao.delete(Ayoub);
 
             //CREATE
             rdao.save(Ayoub);
@@ -135,7 +139,12 @@ public class Main {
                 System.out.println(p);
             }
 
+            System.out.println(ovdao.findByProduct(testProduct));
+
             System.out.println(pdao.findByOVChipkaart(ovChipkaart));
+//            for (Product p : pdao.findByOVChipkaart(ovChipkaart)){
+//                System.out.println(p);
+//            }
 
 
             //DElETE

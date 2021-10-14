@@ -57,12 +57,10 @@ public class OvChipkaart {
     @Override
     public String toString() {
         return "OvChipkaart{" +
-                "id=" + id +
                 ", geldig_tot=" + geldig_tot +
                 ", klasse=" + klasse +
                 ", saldo=" + saldo +
                 ", reiziger=" + reiziger +
-                ", producten=" + producten +
                 '}';
     }
 
