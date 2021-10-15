@@ -114,10 +114,15 @@ public class Main {
 
             ovChipkaart.setKlasse(2);
 
+            System.out.println("ov pre producten:" + ovChipkaart.getProducten());
             ovChipkaart.addProduct(testProduct);
+            System.out.println("na adden producten;" + ovChipkaart.getProducten());
             ovdao.update(ovChipkaart);
+            System.out.println(            ovdao.update(ovChipkaart));
+            System.out.println("na adden producten;" + ovChipkaart.getProducten());
 
             testProduct.setPrijs(50);
+
             testProduct.addOvChipkaarten(ovChipkaart);
             pdao.update(testProduct);
 
@@ -140,10 +145,6 @@ public class Main {
             }
 
             System.out.println(ovdao.findByProduct(testProduct));
-
-            System.out.println(pdao.findByOVChipkaart(ovChipkaart));
-
-
 
             //DElETE
 

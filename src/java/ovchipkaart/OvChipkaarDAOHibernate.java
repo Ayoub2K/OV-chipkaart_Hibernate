@@ -10,6 +10,7 @@ import reiziger.ReizigerDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
@@ -78,11 +79,19 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
     public List<OvChipkaart> findByProduct(Product product) {
         try {
             Transaction transaction = this.session.beginTransaction();
-            Product p = session.createQuery("from producten where kaart_nummer = " + product.getProduct_nummer(),  Product.class).getSingleResult();
+//            Product p = session.createQuery("FROM Product where Product.id = " + product.getId(),  Product.class).getSingleResult();
+//            transaction.commit();
+//            return p.getOvChipkaarten();
+            List<OvChipkaart> alleOvk = session.createQuery("FROM OvChipkaart ", OvChipkaart.class).getResultList();
+            List<OvChipkaart> productOV = new ArrayList<>();
+            for (OvChipkaart o : alleOvk) {
+                if (o.getProducten().contains(product)) {
+                    productOV.add(o);
+                }
+            }
             transaction.commit();
-            return p.getOvChipkaarten();
+            return productOV;
         }catch (Exception e){
-
             e.printStackTrace();
             return null;
         }
