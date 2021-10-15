@@ -134,6 +134,9 @@ public class Main {
             for (Reiziger r : rdao.findAll()){
                 System.out.println(r);
             }
+
+            System.out.println(rdao.findByGbdatum(gbdatum));
+
             for (Adres a : adao.findAll()){
                 System.out.println(a);
             }
