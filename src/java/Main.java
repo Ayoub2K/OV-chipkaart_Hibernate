@@ -53,7 +53,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         Session session = Main.getSession();
-        //testFetchAll();
+        testFetchAll();
         testDAOHibernate();
 
     }
@@ -145,6 +145,8 @@ public class Main {
             }
 
             System.out.println(ovdao.findByProduct(testProduct));
+
+            System.out.println(pdao.findByOVChipkaart(ovChipkaart));
 
             //DElETE
 

@@ -79,9 +79,6 @@ public class OvChipkaarDAOHibernate implements OvChipkaartDAO{
     public List<OvChipkaart> findByProduct(Product product) {
         try {
             Transaction transaction = this.session.beginTransaction();
-//            Product p = session.createQuery("FROM Product where Product.id = " + product.getId(),  Product.class).getSingleResult();
-//            transaction.commit();
-//            return p.getOvChipkaarten();
             List<OvChipkaart> alleOvk = session.createQuery("FROM OvChipkaart ", OvChipkaart.class).getResultList();
             List<OvChipkaart> productOV = new ArrayList<>();
             for (OvChipkaart o : alleOvk) {

@@ -61,10 +61,16 @@ public class ProductDAOHibernate implements ProductDAO{
     @Override
     public List<Product> findByOVChipkaart(OvChipkaart ovChipkaart) {
         try {
-            Transaction transaction = session.beginTransaction();
-            OvChipkaart chipkaart = session.createQuery("from OvChipkaart where  =" + ovChipkaart.getId(),  OvChipkaart.class).getSingleResult();
+            Transaction transaction = this.session.beginTransaction();
+            List<Product> alleProducten = session.createQuery("FROM Product ", Product.class).getResultList();
+            List<Product> OV_product = new ArrayList<>();
+            for (Product p : alleProducten) {
+                if (p.getOvChipkaarten().contains(ovChipkaart)) {
+                    OV_product.add(p);
+                }
+            }
             transaction.commit();
-            return chipkaart.getProducten();
+            return OV_product;
         }catch (Exception e){
             e.printStackTrace();
             return null;
